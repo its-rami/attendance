@@ -1,0 +1,210 @@
+<HomeScreen@Screen>:
+    name:'home'
+    BoxLayout:
+        id: top_box
+        orientation: 'vertical'
+        BoxLayout:
+            GridLayout:
+                cols:1
+                padding: 4
+                id: bottom_box
+                size_hint_x: 0.14
+                spacing: 12
+                MDRectangleFlatButton:
+                    id: button_1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0, 1
+                    text: 'Home'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    halign:'center'
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                MDTextButton:
+                    id: button_2
+                    background_normal: ''
+                    background_color: .2, .2, .2, 1
+                    text: 'Camera'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    halign:'center'
+                    height: 40
+                    on_release:
+                        root.manager.transition.duration=0
+                        app.root.current='camera'
+                MDTextButton:
+                    id: button_3
+                    halign: 'center'
+                    text: 'Attendance'
+                    # font_size: button_3.width/5
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                    halign:'center'
+                    on_release:
+                        root.manager.transition.duration=0
+                        app.root.current='attendance'
+                Widget:
+                MDRectangleFlatButton:
+                    id: button_4
+                    background_normal: ''
+                    text: 'Exit'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                    on_release:app.Exit()
+            GridLayout:
+                canvas.before:
+                    Color:
+                        rgba: (.05, 0.05, 0.05, .05)
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                rows: 5
+                spacing:10
+                Label:
+                    text:'Weeks'
+                    color:(0,0,0,1)
+                    font_size:30
+                    size_hint:None,.2
+                MDScrollView:
+                    size_hint:1,None
+                    do_scroll_x:True
+                    do_scroll_y:False
+                    GridLayout:
+                        spacing:10
+                        height: self.minimum_height
+                        rows:1
+                        MDRoundFlatButton:
+                            text:'w1'
+                            md_bg_color: [1,1,1,1]
+                        MDRoundFlatButton:
+                            text:'w2'
+                        MDRoundFlatButton:
+                            text:'w3'
+                        MDRoundFlatButton:
+                            text:'w4'
+                        MDRoundFlatButton:
+                            text:'w5'
+                        MDRoundFlatButton:
+                            text:'w6'
+                        MDRoundFlatButton:
+                            text:'w7'
+                        MDRoundFlatButton:
+                            text:'w8'
+                        MDRoundFlatButton:
+                            text:'w9'
+                        MDRoundFlatButton:
+                            text:'w10'
+                        MDRoundFlatButton:
+                            text:'w11'
+                        MDRoundFlatButton:
+                            text:'w12'
+                        MDRoundFlatButton:
+                            text:'w13'
+                        MDRoundFlatButton:
+                            text:'w14'
+                GridLayout:
+                    spacing:20
+                    padding:10,0,10,10
+                    rows:1
+                    # orientation: 'horizontal'
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint:0.1,0.1
+                        elevation: 3
+                        shadow_offset: 0, 0
+                        on_release:print('card 1')
+                        Label:
+                            text: "Attendance"
+                            color:(0,0,0,1)
+                            font_size:30
+                        Label:
+                            text: f"{app.attendance_number}"
+                            font_size:70
+                            color:(0,0,0,1)
+                        Widget:
+                            size_hint: 0.5,0.5
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint:0.1,0.1
+                        elevation: 3
+                        shadow_offset: 0, 0
+                        on_release:print('card 2')
+                        Label:
+                            text: "Absent"
+                            color:(0,0,0,1)
+                            font_size:30
+                        Label:
+                            text: "10"
+                            font_size:70
+                            color:(0,0,0,1)
+                        Widget:
+                            size_hint: 0.5,0.5
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint:0.1,0.1
+                        elevation: 3
+                        shadow_offset: 0, 0
+                        on_release:print('card 3')
+                        Label:
+                            text: "Total"
+                            color:(0,0,0,1)
+                            font_size:30
+                        Label:
+                            text: "38"
+                            font_size:70
+                            color:(0,0,0,1)
+                        Widget:
+                            size_hint: 0.5,0.5
+
+                QuestionDb:
+                    size_hint: 1,1.8
+                MDFillRoundFlatButton:
+                    text:'Export Full Attendance'
+                    size_hint: 0.9, None
+<QuestionDb>:
+    column_headings: column_headings
+    orientation: "vertical"
+    GridLayout:
+        canvas.before:
+            Color:
+                rgba: (0.5, 0.5, 0.5, .5)     # 50% translucent orange red
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        id: column_headings
+        size_hint: 2, None
+        size_hint_y: None
+        height: 25
+        cols: 2
+
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (.1, 0.1, 0.1, .05)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        RecycleView:
+            viewclass: 'SelectableButton'
+            data: root.rv_data
+            SelectableRecycleGridLayout:
+                cols: 3
+                key_selection: 'selectable'
+                default_size: None, dp(26)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                multiselect: True
+                touch_multiselect: True

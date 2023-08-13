@@ -1,0 +1,16 @@
+<ClassesScreen@Screen>:
+    name:'classes'
+    BoxLayout:
+        orientation: 'vertical'
+        Image:
+            source: "wiu.png"
+            allow_stretch:True
+        BoxLayout:
+            orientation: 'vertical'
+            MDRectangleFlatButton:
+
+                text: 'My first Item'
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_release:
+                    root.menu.open()
+            Widget:

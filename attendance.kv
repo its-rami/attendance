@@ -1,0 +1,35 @@
+#:include home_screen.kv
+#:include camera_screen.kv
+#:include attendance_screen.kv
+#:include classes_screen.kv
+
+WindowManager:
+    LoginScreen:
+    HomeScreen:
+    ClassesScreen:
+    CameraScreen:
+    AttendanceScreen:
+
+
+<LoginScreen>:
+    name:'login'
+    GridLayout:
+        cols:1
+        size:root.width,root.height
+        GridLayout:
+            cols:2
+            Label:
+                text:'email'
+                font_size:50
+            TextInput:
+                id:'in1'
+            Label:
+                text:'password'
+            TextInput:
+                id:'password'       
+        Button:
+            text:'login'
+            font_size:50
+            on_release:
+                app.root.current='home'
+                root.manager.transition.direction = 'left'

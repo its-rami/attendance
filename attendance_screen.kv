@@ -1,0 +1,63 @@
+<AttendanceScreen@Screen>:
+    name:'attendance'
+    BoxLayout:
+        id: top_box
+        orientation: 'vertical'
+        BoxLayout:
+
+            GridLayout:
+                cols:1
+                padding: 4
+                id: bottom_box
+                size_hint_x: 0.14
+                spacing: 12
+                MDTextButton:
+                    id: button_1
+                    background_normal: ''
+                    background_color: 0.1, 0.1, 0, 1
+                    text: 'Home'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                    halign:'center'
+                    on_release:
+                        root.manager.transition.duration = 0
+                        app.root.current='home'
+                MDTextButton:
+                    id: button_2
+                    background_normal: ''
+                    background_color: .2, .2, .2, 1
+                    text: 'Camera'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                    halign:'center'
+                    on_release:
+                        root.manager.transition.duration=0
+                        app.root.current='camera'
+                MDRectangleFlatButton:
+                    id: button_3
+                    halign: 'center'
+                    text: 'Attendance'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                Widget:
+                MDRectangleFlatButton:
+                    id: button_4
+                    background_normal: ''
+                    text: 'Exit'
+                    color: .6, .6, .6, 1
+                    size_hint_x: None
+                    size_hint_y: None
+                    width: bottom_box.width - 8
+                    height: 40
+                    on_release:app.Exit()
+            Button:
+                background_color:(1,1,0,1)
